@@ -9,9 +9,9 @@ import time
 import os
 
 load_dotenv()
-LOGIN = os.getenv("LOGIN")
-PASSWORD = os.getenv("PASSWORD")
-NICKNAME = os.getenv("NICKNAME")
+TWITTER_LOGIN = os.getenv("LOGIN")
+TWITTER_PASSWORD = os.getenv("PASSWORD")
+TWITTER_NICKNAME = os.getenv("NICKNAME")
 
 class InternetSpeedTwitterBot():
     def __init__(self):
@@ -43,20 +43,20 @@ class InternetSpeedTwitterBot():
         self.driver.get('https://twitter.com/i/flow/login')
         time.sleep(2)
         login_field = self.driver.find_element(By.XPATH, '//*[@id="layers"]/div/div/div/div/div/div/div[2]/div[2]/div/div/div[2]/div[2]/div/div/div/div[5]/label/div/div[2]/div/input')
-        login_field.send_keys(LOGIN)
+        login_field.send_keys(TWITTER_LOGIN)
         login_field.send_keys(Keys.ENTER)
 
         time.sleep(2)
         try:
             nickname_field = self.driver.find_element(By.XPATH, '//*[@id="layers"]/div/div/div/div/div/div/div[2]/div[2]/div/div/div[2]/div[2]/div[1]/div/div[2]/label/div/div[2]/div/input')
-            nickname_field.send_keys(NICKNAME)
+            nickname_field.send_keys(TWITTER_NICKNAME)
             nickname_field.send_keys(Keys.ENTER)
         except NoSuchElementException:
             pass
         
         time.sleep(2)
         password_field = self.driver.find_element(By.XPATH, '//*[@id="layers"]/div/div/div/div/div/div/div[2]/div[2]/div/div/div[2]/div[2]/div[1]/div/div/div[3]/div/label/div/div[2]/div[1]/input')
-        password_field.send_keys(PASSWORD)
+        password_field.send_keys(TWITTER_PASSWORD)
         password_field.send_keys(Keys.ENTER)
 
         try:
