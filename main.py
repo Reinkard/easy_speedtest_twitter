@@ -33,16 +33,23 @@ except NoSuchElementException:
 time.sleep(5)
 download_speed = driver.find_element(By.XPATH, '//*[@id="container"]/div/div[3]/div/div/div/div[2]/div[3]/div[3]/div/div[3]/div/div/div[2]/div[1]/div[1]/div/div[2]/span').text
 upload_speed = driver.find_element(By.XPATH, '//*[@id="container"]/div/div[3]/div/div/div/div[2]/div[3]/div[3]/div/div[3]/div/div/div[2]/div[1]/div[2]/div/div[2]/span').text
+my_provider = driver.find_element(By.XPATH, '//*[@id="container"]/div/div[3]/div/div/div/div[2]/div[3]/div[3]/div/div[3]/div/div/div[2]/div[4]/div/div/div[1]/div[3]/div[2]').text
 
 driver.get('https://twitter.com/i/flow/login')
+
 time.sleep(2)
 login_field = driver.find_element(By.XPATH, '//*[@id="layers"]/div/div/div/div/div/div/div[2]/div[2]/div/div/div[2]/div[2]/div/div/div/div[5]/label/div/div[2]/div/input')
 login_field.send_keys(login)
 login_field.send_keys(Keys.ENTER)
+
 time.sleep(2)
-nickname_field = driver.find_element(By.XPATH, '//*[@id="layers"]/div/div/div/div/div/div/div[2]/div[2]/div/div/div[2]/div[2]/div[1]/div/div[2]/label/div/div[2]/div/input')
-nickname_field.send_keys(nickname)
-nickname_field.send_keys(Keys.ENTER)
+try:
+    nickname_field = driver.find_element(By.XPATH, '//*[@id="layers"]/div/div/div/div/div/div/div[2]/div[2]/div/div/div[2]/div[2]/div[1]/div/div[2]/label/div/div[2]/div/input')
+    nickname_field.send_keys(nickname)
+    nickname_field.send_keys(Keys.ENTER)
+except NoSuchElementException:
+    pass
+
 time.sleep(2)
 password_field = driver.find_element(By.XPATH, '//*[@id="layers"]/div/div/div/div/div/div/div[2]/div[2]/div/div/div[2]/div[2]/div[1]/div/div/div[3]/div/label/div/div[2]/div[1]/input')
 password_field.send_keys(password)
@@ -57,7 +64,7 @@ except NoSuchElementException:
 time.sleep(10)
 entry_field = driver.find_element(By.XPATH, "//div[@id='react-root']/div/div/div[2]/main/div/div/div/div/div/div[3]/div/div[2]/div/div/div/div/div[2]/div/div/div/div/div/div/div/div/div/div/div/label/div/div/div/div/div/div/div[2]/div/div/div/div")
 entry_field.click()
-entry_field.send_keys(f'Привіт! Провайдер soho.net, сьогоднішня швидкість: {download_speed}Mbps / {upload_speed}Mbps.\n\n#selenium #webdriver #learning')
+entry_field.send_keys(f'Привіт! Провайдер {my_provider}, сьогоднішня швидкість: {download_speed}Mbps / {upload_speed}Mbps.\n\n#selenium #webdriver #learning')
 entry_field.send_keys(Keys.ENTER)
 send_button = driver.find_element(By.XPATH, '//*[@id="react-root"]/div/div/div[2]/main/div/div/div/div[1]/div/div[3]/div/div[2]/div[1]/div/div/div/div[2]/div[3]/div/div/div[2]/div[3]/div/span/span')
 send_button.click()
